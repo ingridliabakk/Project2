@@ -7,17 +7,23 @@ plt.style.use('bmh')
 
 
 if __name__ == "__main__":
-    file = (pd.read_csv("/Users/ingridingrid/Documents/UiB/H20/INF264/Project2/data.csv"))
-    test = file.head(20)
+    file = (pd.read_csv("data.csv"))
+    test = file.head(200)
     print(test)
-
-    plt.figure(figsize=(16,8))
-    plt.title('Traffic', fontsize = 14)
-    plt.xlabel('Timer', fontsize= 12)
-    plt.ylabel('Volum Tot', fontsize = 12)
-    plt.plot(test['Volum totalt'], label='TOT')
-    plt.plot(test['Volum til SNTR'], label='SNTR')
-    plt.plot(test['Volum til DNP'], label='DNP')
-    plt.legend(loc='best')
+    fig, axs = plt.subplots(3)
+    fig.suptitle("all plots")
+    #axs[0].figure(figsize=(16,8))
+    #axs[0].title('Traffic', fontsize = 14)
+    #axs[0].xlabel('Timer', fontsize= 12)
+    #axs[0].ylabel('Volum Tot', fontsize = 12)
+    axs[0].title.set_text("num cars after first hours")
+    axs[0].plot(test['Volum totalt'], label='TOT')
+    axs[0].plot(test['Volum til SNTR'], label='SNTR')
+    axs[0].plot(test['Volum til DNP'], label='DNP')
+    axs[0].legend(loc='best')
+    #plotting something else
+    axs[1].title.set_text("different directions compared")
+    axs[1].scatter(test['Volum til SNTR'], test['Volum til DNP'])
     plt.show()
-
+    
+    
