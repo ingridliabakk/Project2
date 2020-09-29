@@ -9,11 +9,15 @@ plt.style.use('bmh')
 if __name__ == "__main__":
     file = (pd.read_csv("/Users/ingridingrid/Documents/UiB/H20/INF264/Project2/data.csv"))
     test = file.head(20)
+    print(test)
 
     plt.figure(figsize=(16,8))
     plt.title('Traffic', fontsize = 14)
     plt.xlabel('Timer', fontsize= 12)
     plt.ylabel('Volum Tot', fontsize = 12)
-    plt.plot(test['Volum totalt'])
+    plt.plot(test['Volum totalt'], label='TOT')
+    plt.plot(test['Volum til SNTR'], label='SNTR')
+    plt.plot(test['Volum til DNP'], label='DNP')
+    plt.legend(loc='best')
     plt.show()
 
