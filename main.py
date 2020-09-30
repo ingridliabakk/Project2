@@ -6,6 +6,18 @@ import matplotlib.pyplot as plt
 plt.style.use('bmh')
 
 if __name__ == "__main__":
+    dataframe = (pd.read_csv("data.csv"))
+    add_datetime(dataframe)
+    plot_features(dataframe)
+
+def add_datetime(df):
+    dates = []
+    for row in df:
+        date = DateTime()
+        dates.append(date)
+    df['datetime'] = dates
+
+def plot_features(file):
     file = (pd.read_csv("data.csv"))
     test = file.head(200)
     print(test)
@@ -23,13 +35,12 @@ if __name__ == "__main__":
     #plotting something else
     axs[1].title.set_text("different directions compared")
     axs[1].scatter(test['Volum til SNTR'], test['Volum til DNP'])
-    axs[1].axis('equal')
     #plotting something else
     axs[2].title.set_text("volum etter time")
-    axs[2].scatter(test['Volum totalt'], test['Fra_time'])
+    axs[2].scatter(test['Volum totalt'], test['Fra_time'], cmap='gist_rainbow')
     #plotting something else
     axs[3].title.set_text("volum etter time")
-    axs[3].plot(test['År'], test['Volum totalt'])
+    axs[3].scatter(test['År'], test['Volum totalt'])
     plt.show()
     
     
