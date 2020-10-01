@@ -50,5 +50,5 @@ if __name__ == "__main__":
     add_datetime(df)
     add_holidays(df)
     add_weekdays(df)
-    print(df)
+    print(df.head(100))
     # plot_features(dataframe)

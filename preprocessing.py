@@ -7,30 +7,35 @@ import datetime
 import holidays
 
 def add_datetime(df):
+    """add datetime object to dataframe"""
     dates = []
     for index, row in df.iterrows():
         year = row['År']
         month = row['Måned']
         day = row['Dag']
-
         date = datetime.datetime(year, month, day)
         dates.append(date)
     df['datetime'] = dates
 
+def isholiday(timestamp):
+    """check if date is a official holiday, høstferie, summer or christmas"""
+    nor_holidays = holidays.Norway()
+    if timestamp.weekday() in nor_holidays:
+        return True
+    if timestamp.dt.week in [41, 52, 28, 29, 30]:
+        return True
+    return False
 
 def add_holidays(df):
-    nor_holidays = holidays.Norway()
-    is_holiday = []
+    '''adds a true false column describing if date is a holiday'''
+    is_holidaylist = []
     for index, row in df.iterrows():
-        if row['datetime'] in nor_holidays:
-            is_holiday.append(True)
-            print(row["datetime"])
-        else:
-            is_holiday.append(False)
-    df['is_holiday'] = is_holiday
+        is_holidaylist.append(isholiday(row['datetime']))
+    df['is_holiday'] = is_holidaylist
 
 
 def add_weekdays(df):
+    '''adds weekday numbers 0-6 to dataframe'''
     weekdays = []
     for index, row in df.iterrows():
         datetime = row['datetime']
