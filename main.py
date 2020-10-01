@@ -4,6 +4,8 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import datetime
+import holidays
+
 plt.style.use('bmh')
 
 
@@ -35,17 +37,21 @@ def plot_features(file):
     axs[0].legend(loc='best')
     #plotting something else
     axs[1].title.set_text("different directions compared")
-    axs[1].scatter(test['Volum til SNTR'], test['Volum til DNP'], s=0.5)
+    axs[1].scatter(test['Volum til SNTR'], test['Volum til DNP'], s=2.5, alpha=0.03)
+    axs[1].axis('equal')
     #plotting something else
     axs[2].title.set_text("volum etter time")
     axs[2].scatter(test['Volum totalt'], test['Fra_time'], cmap='gist_rainbow', s=0.5)
     #plotting something else
-    axs[3].title.set_text("volum etter time")
-    axs[3].scatter(test['Måned'], test['Volum totalt'], s=0.5)
+    axs[3].title.set_text("volum etter time med begge veier")
+    axs[3].scatter(test['Volum til DNP'], test['Fra_time'], cmap='gist_rainbow', s=2.2, c='blue',alpha=0.03)
+    axs[3].scatter(test['Volum til SNTR'], test['Fra_time'], cmap='gist_rainbow', s=2.2, c='green', alpha=0.03)
+    
     plt.show()
     
     
 if __name__ == "__main__":
     dataframe = (pd.read_csv("data.csv"))
     add_datetime(dataframe)
-    plot_features(dataframe)
+    
+    #plot_features(dataframe)
