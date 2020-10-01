@@ -4,7 +4,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import datetime
-import holidays
+#import holidays
 
 plt.style.use('bmh')
 
@@ -19,6 +19,14 @@ def add_datetime(df):
         date = datetime.datetime(year, month, day)
         dates.append(date)
     df['datetime'] = dates
+
+def weekdays(df):
+    weekdays = []
+    for index, row in df.iterrows():
+        datetime = row['datetime']
+        day = datetime.weekday_name
+        weekdays.append(day)
+    df['weekdays'] = weekdays
 
 def plot_features(file):
     file = (pd.read_csv("data.csv"))
@@ -53,5 +61,6 @@ def plot_features(file):
 if __name__ == "__main__":
     dataframe = (pd.read_csv("data.csv"))
     add_datetime(dataframe)
+    weekdays(dataframe)
     
     #plot_features(dataframe)
