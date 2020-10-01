@@ -8,9 +8,6 @@ import holidays
 from preprocessing import *
 plt.style.use('bmh')
 
-
-
-
 def plot_features(file):
     file = (pd.read_csv("data.csv"))
     test = file
@@ -50,5 +47,6 @@ if __name__ == "__main__":
     add_datetime(df)
     add_holidays(df)
     add_weekdays(df)
-    print(df.head(100))
+    print(df.head(200))
     # plot_features(dataframe)
+
