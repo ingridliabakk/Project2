@@ -3,23 +3,24 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
+import datetime
 plt.style.use('bmh')
 
-if __name__ == "__main__":
-    dataframe = (pd.read_csv("data.csv"))
-    add_datetime(dataframe)
-    plot_features(dataframe)
 
 def add_datetime(df):
     dates = []
-    for row in df:
-        date = DateTime()
+    for index, row in df.iterrows():
+        year = row['År']
+        month = row['Måned']
+        day = row['Dag']
+
+        date = datetime.datetime(year, month, day)
         dates.append(date)
     df['datetime'] = dates
 
 def plot_features(file):
     file = (pd.read_csv("data.csv"))
-    test = file.head(200)
+    test = file
     print(test)
     fig, axs = plt.subplots(4)
     fig.suptitle("all plots")
@@ -34,13 +35,17 @@ def plot_features(file):
     axs[0].legend(loc='best')
     #plotting something else
     axs[1].title.set_text("different directions compared")
-    axs[1].scatter(test['Volum til SNTR'], test['Volum til DNP'])
+    axs[1].scatter(test['Volum til SNTR'], test['Volum til DNP'], s=0.5)
     #plotting something else
     axs[2].title.set_text("volum etter time")
-    axs[2].scatter(test['Volum totalt'], test['Fra_time'], cmap='gist_rainbow')
+    axs[2].scatter(test['Volum totalt'], test['Fra_time'], cmap='gist_rainbow', s=0.5)
     #plotting something else
     axs[3].title.set_text("volum etter time")
-    axs[3].scatter(test['År'], test['Volum totalt'])
+    axs[3].scatter(test['Måned'], test['Volum totalt'], s=0.5)
     plt.show()
     
     
+if __name__ == "__main__":
+    dataframe = (pd.read_csv("data.csv"))
+    add_datetime(dataframe)
+    plot_features(dataframe)
