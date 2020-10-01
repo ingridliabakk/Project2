@@ -20,6 +20,17 @@ def add_datetime(df):
         dates.append(date)
     df['datetime'] = dates
 
+def add_holidays(df):
+    nor_holidays = holidays.Norway()
+    is_holiday = []
+    for index, row in df.iterrows():
+        if row['datetime'] in nor_holidays:
+            is_holiday.append(True)
+        else:
+            is_holiday.append(False)
+    df['is_holiday'] = is_holiday
+    
+
 def plot_features(file):
     file = (pd.read_csv("data.csv"))
     test = file
@@ -51,7 +62,8 @@ def plot_features(file):
     
     
 if __name__ == "__main__":
-    dataframe = (pd.read_csv("data.csv"))
-    add_datetime(dataframe)
-    
+    df = (pd.read_csv("data.csv"))
+    add_datetime(df)
+    add_holidays(df)
+    print(df)
     #plot_features(dataframe)
