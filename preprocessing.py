@@ -42,3 +42,12 @@ def add_weekdays(df):
         day = datetime.weekday()
         weekdays.append(day)
     df['weekdays'] = weekdays
+
+def add_month(df):
+    '''adds month by number 0-11 to dataframe'''
+    months = []
+    for index, row in df.iterrows():
+        datetime = row['datetime']
+        month = datetime.month -1
+        months.append(month)
+    df['months'] = months
