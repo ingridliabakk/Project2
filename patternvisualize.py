@@ -5,7 +5,7 @@ import holidays
 def plot_features(file):
     df = file
     print(df)
-    fig, axs = plt.subplots(5)
+    fig, axs = plt.subplots(6)
     fig.suptitle("all plots")
     # axs[0].figure(figsize=(16,8))
     #axs[0].title('Traffic', fontsize = 14)
@@ -35,8 +35,23 @@ def plot_features(file):
     axs[4].title.set_text("Total number of cars by weekday")
     axs[4].plot(getweekavg("Volum til DNP", df), label="DNP")
     axs[4].legend(loc='best')
+    bars = getholidayavg("Volum til DNP", df) + getholidayavg("Volum til SNTR", df)
+    print(bars)
+    axs[5].bar([1, 2, 3,4], bars )
+    axs[5].title.set_text("Total number of cars by holiday/not holiday, DNP/SNTR")
+    axs[5].legend(loc='best')
     # plotting something else
     plt.show()
+
+def getholidayavg(col, df):
+    hol = [0]*2
+    for index, row in df.iterrows():
+        day = row['is_holiday']
+        if day:
+            hol[0] += row[col]
+        else:
+            hol[1] += row[col]
+    return hol
 
 def getweekavg(col, df):
     week = [0]*7
