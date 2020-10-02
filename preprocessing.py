@@ -20,9 +20,9 @@ def add_datetime(df):
 def isholiday(timestamp):
     """check if date is a official holiday, høstferie, summer or christmas"""
     nor_holidays = holidays.Norway()
-    if timestamp.weekday() in nor_holidays:
+    if timestamp in nor_holidays:
         return True
-    if timestamp.dt.week in [41, 52, 28, 29, 30]:
+    if timestamp.week in [41, 28, 52, 29, 30]:
         return True
     return False
 
