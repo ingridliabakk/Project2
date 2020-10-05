@@ -18,6 +18,7 @@ if __name__ == "__main__":
     add_weekdays(df)
     print(df.head(100))
     plot_features(df)
+    remove_columns(df)
 
 
 

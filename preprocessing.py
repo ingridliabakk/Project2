@@ -42,3 +42,8 @@ def add_weekdays(df):
         day = datetime.weekday()
         weekdays.append(day)
     df['weekdays'] = weekdays
+
+def remove_columns(df):
+    '''remove all columns not used as features'''
+    del df['datetime']
+    
