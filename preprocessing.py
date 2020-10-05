@@ -46,6 +46,10 @@ def add_weekdays(df):
 def remove_columns(df):
     '''remove all columns not used as features'''
     del df['datetime']
+    del df['Måned']
+    del df['Dag']
+    del df['År']
+    del df['Volum totalt']
     
 def add_month(df):
     '''adds month by number 0-11 to dataframe'''
