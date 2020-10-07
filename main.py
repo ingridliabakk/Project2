@@ -8,9 +8,11 @@ import holidays
 from preprocessing import *
 from patternvisualize import *
 from decisiontree import *
+from linearreg import *
 from sklearn.model_selection import train_test_split
 plt.style.use('bmh') 
 OKGREEN = '\033[92m'
+
 
 
 def add_features():
@@ -41,6 +43,8 @@ def eval_models(df):
     for y in y_columns:
         decision_tree = DecisionTree(features, train, y)
         print(f"{OKGREEN} decision tree predicting {y}", decision_tree.test_accuracy(test))
+        linreg = LinearRegression(features, train, y)
+        print(f"{} decision tree predicting {y}", decision_tree.test_accuracy(test))
 
 if __name__ == "__main__":
     df = get_features_dataframe()
