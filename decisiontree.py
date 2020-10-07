@@ -8,8 +8,9 @@ class DecisionTree:
 
     dt: DecisionTreeClassifier  = None
     features = None
-    def __init__(self, features, df):
-        y = df["Volum til SNTR"]
+
+    def __init__(self, features, df, col_to_predict):
+        y = df[col_to_predict]
         self.features = features
         X = df[features]
         self.dt = DecisionTreeClassifier(min_samples_split=20, random_state=99)

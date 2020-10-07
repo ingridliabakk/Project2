@@ -35,5 +35,8 @@ if __name__ == "__main__":
     #plot_features(df)
     print(df.head(100))
     features = [ 'Fra_time', 'is_holiday', 'weekdays', 'months' ]
-    decision_tree = DecisionTree(features, train)
+    decision_tree = DecisionTree(features, train, "Volum til SNTR")
+    print("dt error", decision_tree.test_accuracy(test))
+
+    decision_tree = DecisionTree(features, train, "Volum totalt")
     print("dt error", decision_tree.test_accuracy(test))
