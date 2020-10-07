@@ -5,6 +5,10 @@ from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import datetime
 import holidays
+'''
+Methods for feature engineering.
+either adds a column to a dataframe obj or removes columns
+'''
 
 def add_datetime(df):
     """add datetime object to dataframe"""

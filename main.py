@@ -12,10 +12,8 @@ from sklearn.model_selection import train_test_split
 plt.style.use('bmh') 
 OKGREEN = '\033[92m'
 OKBLUE = '\033[94m'
-OKGREEN = '\033[92m'
 ENDC = '\033[0m'
 BOLD = '\033[1m'
-UNDERLINE = '\033[4m'
 
 def add_features():
     '''adds features and removes unused columns from data'''
@@ -27,9 +25,12 @@ def add_features():
     remove_columns(df)
     return df
 
-def get_features_dataframe():
-    '''return a dataframe with engineered features'''
-    if(False):
+def get_features_dataframe(readFromFile=True):
+    '''
+    return a dataframe with engineered features. 
+    @param readFromFile Reads previously generated features from file
+    '''
+    if(not readFromFile):
         df = add_features()
         df.to_csv("modifieddata.csv")
     else:
@@ -38,6 +39,10 @@ def get_features_dataframe():
     return df
 
 def eval_models(df):
+    '''
+    Evaluates all models and directions with selected features
+    prints MSRP for all models
+    '''
     features = [ 'Fra_time', 'is_holiday', 'weekdays', 'months' ]
     train, test = train_test_split(df, test_size=0.20)
     y_columns = ["Volum til SNTR", "Volum totalt","Volum til DNP"]
@@ -45,9 +50,9 @@ def eval_models(df):
     for y in y_columns:
         decision_tree = DecisionTree(features, train, y)
         print(f"{OKGREEN} decision tree predicting {y}", decision_tree.test_accuracy(test))
+    print(ENDC)
 
 if __name__ == "__main__":
     df = get_features_dataframe()
     #plot_features(df)
-    print(df.head(100))
     eval_models(df)
