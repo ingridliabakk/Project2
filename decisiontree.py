@@ -9,10 +9,10 @@ class DecisionTree:
     dt: DecisionTreeClassifier  = None
     features = None
 
-    def __init__(self, features, df, col_to_predict):
-        y = df[col_to_predict]
+    def __init__(self, features, train_df, col_to_predict):
+        y = train_df[col_to_predict]
         self.features = features
-        X = df[features]
+        X = train_df[features]
         self.dt = DecisionTreeClassifier(min_samples_split=20, random_state=99)
         self.dt.fit(X, y)
     
