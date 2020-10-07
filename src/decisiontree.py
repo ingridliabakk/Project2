@@ -5,7 +5,10 @@ from sklearn.metrics import mean_squared_error
 from sklearn.tree import *
 
 class DecisionTree:
-
+    '''
+    Class to create a Decision tree and do predictions.
+    tree is fitted in the constructor.
+    '''
     dt: DecisionTreeClassifier  = None
     features = None
     col_to_predict=None
