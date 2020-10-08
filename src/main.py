@@ -9,6 +9,7 @@ from preprocessing import *
 from patternvisualize import *
 from decisiontree import *
 from logreg import *
+from linearregresion import *
 from sklearn.model_selection import train_test_split
 plt.style.use('bmh') 
 OKGREEN = '\033[92m'
@@ -51,9 +52,9 @@ def eval_models(df):
     print("mean squared errors")
     for y in y_columns:
         decision_tree = DecisionTree(features, train, y)
-        print(f"{OKGREEN} decision tree predicting {y}", decision_tree.test_accuracy(test))
-        logreg = LogRegression(features, train, y)
-        print(f"{OKBLUE} logistic predicting {y}", logreg.test_accuracy(test))
+        print(f"{OKGREEN} decision tree predicting {y}: {decision_tree.test_accuracy(test)}")
+        linear_regression = LinRegression(features, train, y)
+        print(f"{OKBLUE} linear predicting {y}: {linear_regression.test_accuracy(test)}")
     print(ENDC)
 
 if __name__ == "__main__":
