@@ -10,12 +10,14 @@ from patternvisualize import *
 from decisiontree import *
 from logreg import *
 from linearregresion import *
+from neuralnetwork import *
 from sklearn.model_selection import train_test_split
 plt.style.use('bmh') 
 OKGREEN = '\033[92m'
 OKBLUE = '\033[94m'
 ENDC = '\033[0m'
 BOLD = '\033[1m'
+ORANGE = '\033[93m'
 
 
 def add_features():
@@ -55,6 +57,8 @@ def eval_models(df):
         print(f"{OKGREEN} decision tree predicting {y}: {decision_tree.test_accuracy(test)}")
         linear_regression = LinRegression(features, train, y)
         print(f"{OKBLUE} linear predicting {y}: {linear_regression.test_accuracy(test)}")
+        mlp = MLP(features, train, y)
+        print(f"{ORANGE} MLP regressor {y}: {mlp.test_accuracy(test)}")
     print(ENDC)
 
 if __name__ == "__main__":
