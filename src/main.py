@@ -80,6 +80,7 @@ def predict_data(df):
         decision_tree = DecisionTree(features, train, y)
         print(f"{OKGREEN} decision tree : {decision_tree.MSE(test):.0f} {decision_tree.R2(test):.2f}", end="")
         print(ENDC)
+        decision_tree.plot(test, y)
 
 if __name__ == "__main__":
     df = get_features_dataframe()

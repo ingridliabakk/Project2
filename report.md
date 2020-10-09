@@ -21,3 +21,11 @@ Trained and tested three models:
 1. Decision Tree Regressor
 2. Linear Regression
 3. MLP Regressor
+
+Best model was Decision Tree Regressor with a R2 score of between 0.91 and 0.94 for the different predictions. 
+
+We already know form plotting that the models are going to differ some, e.g. different traffic at different hours. Tried learning a model with y as 'Sentrum' using it to predict 'Danmarksplass' and got a R2 score as 0.62, proving the models differ too much to be used interchangably.
+
+### predicting 2020
+
+Tried using all data as training data, and then predicting the data for 2020. 
