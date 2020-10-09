@@ -8,8 +8,9 @@ is holiday, boolean/categorical value. Added manually spring, easter etc and add
 All other features are removed.
 
 ## Plotted features to find patterns
-to plot, uncomment plot features() in main method.
-**screenshots of plots**
+to plot, uncomment plot_features() in main method.
+
+![Plots](images/plots.png)
 
 Observations from plots:
 There are big variations depending on the features we selected, such as weekdays 5-6 and july having lower traffic
