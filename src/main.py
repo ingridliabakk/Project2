@@ -19,9 +19,9 @@ ENDC = '\033[0m'
 BOLD = '\033[1m'
 ORANGE = '\033[93m'
 
-
 y_columns = ["Volum til SNTR", "Volum totalt","Volum til DNP"]
 features = [ 'Fra_time', 'is_holiday', 'weekdays', 'months' ]
+
 def add_features(df):
     '''adds features and removes unused columns from data'''
     add_datetime(df)
@@ -68,7 +68,7 @@ def eval_models(df):
 def predict_data(df):
     '''
     try to predict the 2020 data with 2015-2019 data
-    prints output 
+    prints output and plots prediction and actual value
     '''
     train = df
     test = pd.read_csv("../data/data_2020.csv")
@@ -84,6 +84,6 @@ def predict_data(df):
 
 if __name__ == "__main__":
     df = get_features_dataframe()
-    #plot_features(df)
+    plot_features(df)
     eval_models(df)
     predict_data(df)

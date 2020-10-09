@@ -3,40 +3,43 @@ import datetime
 import holidays
 
 def plot_features(file):
+    '''creates different plots to visualize patterns in file'''
     df = file
     print(df)
     fig, axs = plt.subplots(3, 2)
     fig.suptitle("Plots")
-    
     axs[0][0].title.set_text("Number of cars after first hours")
     axs[0][0].plot(df['Volum totalt'], label='TOT')
     axs[0][0].plot(df['Volum til SNTR'], label='SNTR')
     axs[0][0].plot(df['Volum til DNP'], label='DNP')
     axs[0][0].legend(loc='best')
-    
+    #next plot
     bars = getholidayavg("Volum til DNP", df) + getholidayavg("Volum til SNTR", df)
     print(bars)
     axs[2][0].bar([1, 2, 3,4], bars )
     axs[2][0].title.set_text("Average/day sorted by holiday and direction")
     axs[2][0].legend(loc='best')
-    
+    #next plot
     axs[1][0].plot(getweekavg("Volum til SNTR", df), label="SNTR")
     axs[1][0].title.set_text("Total number of cars by weekday")
     axs[1][0].plot(getweekavg("Volum til DNP", df), label="DNP")
     axs[1][0].legend(loc='best')
-
-    # plotting something else
+    # next plot
     axs[1][1].plot(getmonthavg("Volum til SNTR", df), label="SNTR")
     axs[1][1].title.set_text("Total number of cars by month")
     axs[1][1].plot(getmonthavg("Volum til DNP", df), label="DNP")
     axs[1][1].legend(loc='best')
-    # plotting something else
+    #  next plot
     axs[2][1].plot(gethouravg("Volum til SNTR", df), label="SNTR")
     axs[2][1].title.set_text("Total number of cars by hour")
     axs[2][1].plot(gethouravg("Volum til DNP", df), label="DNP")
     axs[2][1].legend(loc='best')
     plt.tight_layout()
     plt.show()
+
+'''
+methods for calculating different averages based on dataframe
+'''
 
 def getholidayavg(direction, df):
     hol = [0, 0]
