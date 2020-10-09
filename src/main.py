@@ -6,9 +6,10 @@ import matplotlib.pyplot as plt
 import datetime
 import holidays
 from preprocessing import *
+from polyReg import *
 from patternvisualize import *
 from decisiontree import *
-from logreg import *
+from randomforest import *
 from linearregresion import *
 from neuralnetwork import *
 from sklearn.model_selection import train_test_split
@@ -56,8 +57,8 @@ def eval_models(df):
         print("predicting ", y)
         decision_tree = DecisionTree(features, train, y)
         print(f"{OKGREEN} decision tree : {decision_tree.MSE(test):.2f} {decision_tree.R2(test):.2f}", end="")
-        linear_regression = LinRegression(features, train, y)
-        print(f"{OKBLUE} linear : {linear_regression.MSE(test):.0f} {linear_regression.R2(test):.2f}", end="")
+        linear_regression = PolyReg(features, train, y)
+        print(f"{OKBLUE}Random forest: {linear_regression.MSE(test):.0f} {linear_regression.R2(test):.2f}", end="")
         mlp = MLP(features, train, y)
         print(f"{ORANGE} MLP: {mlp.MSE(test):.0f} {mlp.R2(test):.2f}")
         print(ENDC)

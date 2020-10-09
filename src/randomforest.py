@@ -5,7 +5,7 @@ from sklearn.metrics import mean_squared_error
 from sklearn.linear_model import LogisticRegression
 from sklearn import preprocessing
 
-class LogRegression:
+class RandomForest:
 
     logreg: LogisticRegression = None
     features = None

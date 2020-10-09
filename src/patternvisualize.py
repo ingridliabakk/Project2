@@ -5,7 +5,6 @@ import holidays
 def plot_features(file):
     '''creates different plots to visualize patterns in file'''
     df = file
-    print(df)
     fig, axs = plt.subplots(3, 2)
     fig.suptitle("Plots")
     axs[0][0].title.set_text("Number of cars after first hours")
