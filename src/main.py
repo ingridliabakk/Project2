@@ -55,19 +55,25 @@ def eval_models(df):
     for y in y_columns:
         print("predicting ", y)
         decision_tree = DecisionTree(features, train, y)
-        print(f"{OKGREEN} decision tree : {decision_tree.MSE(test):.0f} {decision_tree.R2(test):.2f}", end="")
+        print(f"{OKGREEN} decision tree : {decision_tree.MSE(test):.2f} {decision_tree.R2(test):.2f}", end="")
         linear_regression = LinRegression(features, train, y)
         print(f"{OKBLUE} linear : {linear_regression.MSE(test):.0f} {linear_regression.R2(test):.2f}", end="")
         mlp = MLP(features, train, y)
         print(f"{ORANGE} MLP: {mlp.MSE(test):.0f} {mlp.R2(test):.2f}")
         print(ENDC)
+    print("predict opposite direction of training data")
+    decision_tree = DecisionTree(features, train, 'Volum til SNTR')
+    print(f"{BOLD } decision tree : {decision_tree.MSE(test, 'Volum totalt'):.2f} {decision_tree.R2(test, 'Volum til DNP'):.2f}{ENDC}" )
 
 def predict_data(df):
-    '''try to predict the 2020 data'''
-    print("predicting 2020 data with 2015-2019 data")
+    '''
+    try to predict the 2020 data with 2015-2019 data
+    prints output 
+    '''
     train = df
     test = pd.read_csv("../data/data_2020.csv")
     test = add_features(test)
+    print("predicting 2020 data ")
     print("mean squared errors and R2 scores")
     for y in y_columns:
         print("predicting ", y)
@@ -83,4 +89,4 @@ if __name__ == "__main__":
     df = get_features_dataframe()
     #plot_features(df)
     eval_models(df)
-    predict_data(df)
+    #predict_data(df)
