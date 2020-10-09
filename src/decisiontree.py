@@ -15,7 +15,6 @@ class DecisionTree:
 
     def __init__(self, features, train_df, col_to_predict):
         self.col_to_predict = col_to_predict
-        print("trener med", col_to_predict)
         y = train_df[col_to_predict]
         self.features = features
         X = train_df[features]
@@ -32,7 +31,6 @@ class DecisionTree:
     def MSE(self, test, col_to_predict = None):
         if col_to_predict is None:
             col_to_predict = self.col_to_predict
-        print("tester med", col_to_predict)
         y_true = test[col_to_predict]
         y_pred = self.dt.predict(test[self.features])
         return mean_squared_error(y_true, y_pred)
