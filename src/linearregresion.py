@@ -9,6 +9,7 @@ class LinRegression:
 
     lr: LinearRegression = None
     features = None
+    col_to_predict=None
     def __init__(self, features, train_df, col_to_predict):
         self.col_to_predict = col_to_predict
         y = train_df[col_to_predict]
