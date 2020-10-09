@@ -20,6 +20,8 @@ BOLD = '\033[1m'
 ORANGE = '\033[93m'
 
 
+y_columns = ["Volum til SNTR", "Volum totalt","Volum til DNP"]
+features = [ 'Fra_time', 'is_holiday', 'weekdays', 'months' ]
 def add_features():
     '''adds features and removes unused columns from data'''
     df = (pd.read_csv("../data/data.csv"))
@@ -48,20 +50,36 @@ def eval_models(df):
     Evaluates all models and directions with selected features
     prints MSRP for all models
     '''
-    features = [ 'Fra_time', 'is_holiday', 'weekdays', 'months' ]
     train, test = train_test_split(df, test_size=0.20)
-    y_columns = ["Volum til SNTR", "Volum totalt","Volum til DNP"]
-    print("mean squared errors")
+    print("mean squared errors and R2 scores")
     for y in y_columns:
+        print("predicting ", y)
         decision_tree = DecisionTree(features, train, y)
-        print(f"{OKGREEN} decision tree predicting {y}: {decision_tree.test_accuracy(test)}")
+        print(f"{OKGREEN} decision tree : {decision_tree.MSE(test):.0f} {decision_tree.R2(test):.2f}", end="")
         linear_regression = LinRegression(features, train, y)
-        print(f"{OKBLUE} linear predicting {y}: {linear_regression.test_accuracy(test)}")
+        print(f"{OKBLUE} linear : {linear_regression.MSE(test):.0f} {linear_regression.R2(test):.2f}", end="")
         mlp = MLP(features, train, y)
-        print(f"{ORANGE} MLP regressor {y}: {mlp.test_accuracy(test)}")
-    print(ENDC)
+        print(f"{ORANGE} MLP: {mlp.MSE(test):.0f} {mlp.R2(test):.2f}")
+        print(ENDC)
+
+def predict_data(df):
+    '''try to predict the 2020 data'''
+    print("predicting 2020 data with 2015-2019 data")
+    train = df
+    test = pd.read_csv("")
+    print("mean squared errors and R2 scores")
+    for y in y_columns:
+        print("predicting ", y)
+        decision_tree = DecisionTree(features, train, y)
+        print(f"{OKGREEN} decision tree : {decision_tree.MSE(test):.0f} {decision_tree.R2(test):.2f}", end="")
+        linear_regression = LinRegression(features, train, y)
+        print(f"{OKBLUE} linear : {linear_regression.MSE(test):.0f} {linear_regression.R2(test):.2f}", end="")
+        mlp = MLP(features, train, y)
+        print(f"{ORANGE} MLP: {mlp.MSE(test):.0f} {mlp.R2(test):.2f}")
+        print(ENDC)
 
 if __name__ == "__main__":
     df = get_features_dataframe()
     #plot_features(df)
     eval_models(df)
+    predict_data(df)
